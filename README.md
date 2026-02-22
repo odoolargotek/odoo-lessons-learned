@@ -14,6 +14,9 @@ This repository serves as a **centralized reference** for:
 
 ## 📑 Available Documentation
 
+### Odoo 19 🆕
+- [**odoo-19-lessons.md**](./odoo-19-lessons.md) - Complete migration guide from Odoo 18 to 19 with breaking changes and solutions
+
 ### Odoo 18
 - [**odoo-18-lessons.md**](./odoo-18-lessons.md) - Issues, breaking changes, and solutions for Odoo 18
 
@@ -32,8 +35,11 @@ This repository serves as a **centralized reference** for:
 ## 🚀 Quick Links
 
 **Most Recent Issues:**
-1. [Odoo 18: Chatter Widget Migration](./odoo-18-lessons.md#chatter-widget-migration) - Form rendering breaks with legacy chatter syntax
-2. [Odoo 18: Activity Field Naming Conflict](./odoo-18-lessons.md#activity-field-naming-conflict) - `activity_ids` conflicts with mail.activity.mixin
+1. [Odoo 19: HTTP Route Type Deprecation](./odoo-19-lessons.md#1-http-route-type-deprecation-typejson--typejsonrpc) - `type='json'` → `type='jsonrpc'`
+2. [Odoo 19: View Target Changes](./odoo-19-lessons.md#2-view-target-deprecation-targetinline-no-longer-valid) - `target='inline'` removed
+3. [Odoo 19: Model Description Required](./odoo-19-lessons.md#3-model-_description-attribute-now-required) - All models need `_description`
+4. [Odoo 18: Chatter Widget Migration](./odoo-18-lessons.md#chatter-widget-migration) - Form rendering breaks with legacy chatter syntax
+5. [Odoo 18: Activity Field Naming Conflict](./odoo-18-lessons.md#activity-field-naming-conflict) - `activity_ids` conflicts with mail.activity.mixin
 
 ## 📝 Document Structure
 
@@ -108,6 +114,7 @@ When you encounter a new Odoo issue:
 
 | Version | Issues Documented | Last Updated |
 |---------|-------------------|---------------|
+| Odoo 19 | 5 | 2026-02-22 |
 | Odoo 18 | 3 | 2026-01-22 |
 | Odoo 17 | - | - |
 | Odoo 16 | - | - |
@@ -116,6 +123,7 @@ When you encounter a new Odoo issue:
 
 ## 🔗 Related Repositories
 
+- [pignora_server](https://github.com/odoolargotek/pignora_server) - Pignora crypto-collateralized loans (Odoo 19)
 - [largotekodoo](https://github.com/odoolargotek/largotekodoo) - Main Largotek ERP implementation
 - [Odoo Official](https://github.com/odoo/odoo) - Official Odoo repository
 
@@ -125,6 +133,6 @@ For questions about specific lessons or to suggest new topics, open an issue in 
 
 ---
 
-**Last Updated**: 2026-01-22  
+**Last Updated**: 2026-02-22  
 **Maintained by**: Largotek SRL Development Team  
 **License**: CC-BY-4.0 (Knowledge sharing)
