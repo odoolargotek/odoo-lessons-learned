@@ -14,32 +14,56 @@ This repository serves as a **centralized reference** for:
 
 ## 📑 Available Documentation
 
-### Odoo 19 🆕
+### By Odoo Version
+
+#### Odoo 19 🆕
 - [**odoo-19-lessons.md**](./odoo-19-lessons.md) - Complete migration guide from Odoo 18 to 19 with breaking changes and solutions
 
-### Odoo 18
+#### Odoo 18
 - [**odoo-18-lessons.md**](./odoo-18-lessons.md) - Issues, breaking changes, and solutions for Odoo 18
 
-### Odoo 17
+#### Odoo 17
 - *Planned*
 
-### Odoo 16
+#### Odoo 16
 - *Planned*
 
-### Odoo 15
+#### Odoo 15
 - *Planned*
 
-### Odoo 14 (Legacy)
+#### Odoo 14 (Legacy)
+- *Planned*
+
+### By Topic (Cross-Version)
+
+#### Reports & Views 🖨️
+- [**qweb-reports-lessons.md**](./qweb-reports-lessons.md) - QWeb report issues: blank PDFs, template caching, field access errors
+
+#### Quick Fixes & Patches ⚡
+- [**quick-fixes.md**](./quick-fixes.md) - Fast solutions for common Odoo issues across modules, database, views, and APIs
+
+#### Performance (Coming Soon)
+- *Planned*
+
+#### Security (Coming Soon)
 - *Planned*
 
 ## 🚀 Quick Links
 
 **Most Recent Issues:**
-1. [Odoo 19: HTTP Route Type Deprecation](./odoo-19-lessons.md#1-http-route-type-deprecation-typejson--typejsonrpc) - `type='json'` → `type='jsonrpc'`
-2. [Odoo 19: View Target Changes](./odoo-19-lessons.md#2-view-target-deprecation-targetinline-no-longer-valid) - `target='inline'` removed
-3. [Odoo 19: Model Description Required](./odoo-19-lessons.md#3-model-_description-attribute-now-required) - All models need `_description`
-4. [Odoo 18: Chatter Widget Migration](./odoo-18-lessons.md#chatter-widget-migration) - Form rendering breaks with legacy chatter syntax
-5. [Odoo 18: Activity Field Naming Conflict](./odoo-18-lessons.md#activity-field-naming-conflict) - `activity_ids` conflicts with mail.activity.mixin
+1. [QWeb Reports: Blank PDF Files](./qweb-reports-lessons.md#-blank-pdf-reports) - Report generates but shows no content
+2. [QWeb Reports: Template Caching](./qweb-reports-lessons.md#-template-caching-issues) - Changes not appearing after update
+3. [Odoo 19: HTTP Route Type Deprecation](./odoo-19-lessons.md#1-http-route-type-deprecation-typejson--typejsonrpc) - `type='json'` → `type='jsonrpc'`
+4. [Odoo 19: View Target Changes](./odoo-19-lessons.md#2-view-target-deprecation-targetinline-no-longer-valid) - `target='inline'` removed
+5. [Odoo 19: Model Description Required](./odoo-19-lessons.md#3-model-_description-attribute-now-required) - All models need `_description`
+6. [Odoo 18: Chatter Widget Migration](./odoo-18-lessons.md#chatter-widget-migration) - Form rendering breaks with legacy chatter syntax
+7. [Odoo 18: Activity Field Naming Conflict](./odoo-18-lessons.md#activity-field-naming-conflict) - `activity_ids` conflicts with mail.activity.mixin
+
+**Quick Fixes:**
+- [Module Won't Install](./quick-fixes.md#module-wont-install---dependency-error)
+- [Database Connection Pool Exhausted](./quick-fixes.md#database-connection-pool-exhausted)
+- [View Not Refreshing](./quick-fixes.md#view-not-refreshing-after-changes)
+- [Slow Query - Missing Index](./quick-fixes.md#slow-query---missing-index)
 
 ## 📝 Document Structure
 
@@ -84,7 +108,9 @@ Each version document follows this structure:
 1. **Finding solutions**: Use Ctrl+F to search within documents
 2. **Looking up breaking changes**: Check the "Breaking Changes" section
 3. **Version comparison**: Compare sections across version files
-4. **Adding new lessons**: Follow the document structure and submit a PR
+4. **Quick fixes**: Check [quick-fixes.md](./quick-fixes.md) for immediate solutions
+5. **Topic-specific**: Browse by topic (Reports, Performance, Security) for cross-version issues
+6. **Adding new lessons**: Follow the document structure and submit a PR
 
 ## 🔄 Contributing
 
@@ -108,21 +134,25 @@ When you encounter a new Odoo issue:
    - Official docs
    - Stack Overflow
 
-4. **Submit a pull request** to the appropriate version file
+4. **Submit a pull request** to the appropriate version file or topic file
 
 ## 📊 Statistics
 
-| Version | Issues Documented | Last Updated |
-|---------|-------------------|---------------|
+| Document | Issues Documented | Last Updated |
+|----------|-------------------|---------------|
+| **By Version** | | |
 | Odoo 19 | 5 | 2026-02-22 |
 | Odoo 18 | 3 | 2026-01-22 |
 | Odoo 17 | - | - |
 | Odoo 16 | - | - |
 | Odoo 15 | - | - |
-| Odoo 14 | - | - |
+| **By Topic** | | |
+| QWeb Reports | 4 | 2026-02-26 |
+| Quick Fixes | 25+ | 2026-02-23 |
 
 ## 🔗 Related Repositories
 
+- [odessa](https://github.com/odoolargotek/odessa) - Odessa logistics ERP (Odoo 15)
 - [pignora_server](https://github.com/odoolargotek/pignora_server) - Pignora crypto-collateralized loans (Odoo 19)
 - [largotekodoo](https://github.com/odoolargotek/largotekodoo) - Main Largotek ERP implementation
 - [Odoo Official](https://github.com/odoo/odoo) - Official Odoo repository
@@ -133,6 +163,6 @@ For questions about specific lessons or to suggest new topics, open an issue in 
 
 ---
 
-**Last Updated**: 2026-02-22  
+**Last Updated**: 2026-02-26  
 **Maintained by**: Largotek SRL Development Team  
 **License**: CC-BY-4.0 (Knowledge sharing)
