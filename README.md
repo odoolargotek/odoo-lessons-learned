@@ -21,6 +21,7 @@ This repository serves as a **centralized reference** for:
 
 #### Odoo 18
 - [**odoo-18-lessons.md**](./odoo-18-lessons.md) - Issues, breaking changes, and solutions for Odoo 18
+- [**odoo-18-payment-provider-lessons.md**](./odoo-18-payment-provider-lessons.md) - Custom payment provider: QWeb context, inline form, rendering_values
 
 #### Odoo 17
 - *Planned*
@@ -39,6 +40,9 @@ This repository serves as a **centralized reference** for:
 #### Reports & Views 🖨️
 - [**qweb-reports-lessons.md**](./qweb-reports-lessons.md) - QWeb report issues: blank PDFs, template caching, field access errors
 
+#### Payments 💳
+- [**odoo-18-payment-provider-lessons.md**](./odoo-18-payment-provider-lessons.md) - Custom payment provider inline form: QWeb context, rendering_values, provider_sudo
+
 #### Quick Fixes & Patches ⚡
 - [**quick-fixes.md**](./quick-fixes.md) - Fast solutions for common Odoo issues across modules, database, views, and APIs
 
@@ -51,13 +55,16 @@ This repository serves as a **centralized reference** for:
 ## 🚀 Quick Links
 
 **Most Recent Issues:**
-1. [QWeb Reports: Blank PDF Files](./qweb-reports-lessons.md#-blank-pdf-reports) - Report generates but shows no content
-2. [QWeb Reports: Template Caching](./qweb-reports-lessons.md#-template-caching-issues) - Changes not appearing after update
-3. [Odoo 19: HTTP Route Type Deprecation](./odoo-19-lessons.md#1-http-route-type-deprecation-typejson--typejsonrpc) - `type='json'` → `type='jsonrpc'`
-4. [Odoo 19: View Target Changes](./odoo-19-lessons.md#2-view-target-deprecation-targetinline-no-longer-valid) - `target='inline'` removed
-5. [Odoo 19: Model Description Required](./odoo-19-lessons.md#3-model-_description-attribute-now-required) - All models need `_description`
-6. [Odoo 18: Chatter Widget Migration](./odoo-18-lessons.md#chatter-widget-migration) - Form rendering breaks with legacy chatter syntax
-7. [Odoo 18: Activity Field Naming Conflict](./odoo-18-lessons.md#activity-field-naming-conflict) - `activity_ids` conflicts with mail.activity.mixin
+1. [Odoo 18: Payment Provider — KeyError rendering_values](./odoo-18-payment-provider-lessons.md#-error-2-keyerror-rendering_values-en-el-template-qweb) - `rendering_values` no es variable en el template
+2. [Odoo 18: Payment Provider — KeyError provider_sudo](./odoo-18-payment-provider-lessons.md#-error-3-keyerror-provider_sudo-en-el-template-qweb) - Hay que inyectarlo manualmente
+3. [Odoo 18: Payment Provider — Pantalla gris](./odoo-18-payment-provider-lessons.md#-error-1-pantalla-gris-en-el-checkout-overlay-bloqueante) - No devolver binarios en rendering_values
+4. [QWeb Reports: Blank PDF Files](./qweb-reports-lessons.md#-blank-pdf-reports) - Report generates but shows no content
+5. [QWeb Reports: Template Caching](./qweb-reports-lessons.md#-template-caching-issues) - Changes not appearing after update
+6. [Odoo 19: HTTP Route Type Deprecation](./odoo-19-lessons.md#1-http-route-type-deprecation-typejson--typejsonrpc) - `type='json'` → `type='jsonrpc'`
+7. [Odoo 19: View Target Changes](./odoo-19-lessons.md#2-view-target-deprecation-targetinline-no-longer-valid) - `target='inline'` removed
+8. [Odoo 19: Model Description Required](./odoo-19-lessons.md#3-model-_description-attribute-now-required) - All models need `_description`
+9. [Odoo 18: Chatter Widget Migration](./odoo-18-lessons.md#chatter-widget-migration) - Form rendering breaks with legacy chatter syntax
+10. [Odoo 18: Activity Field Naming Conflict](./odoo-18-lessons.md#activity-field-naming-conflict) - `activity_ids` conflicts with mail.activity.mixin
 
 **Quick Fixes:**
 - [Module Won't Install](./quick-fixes.md#module-wont-install---dependency-error)
@@ -143,6 +150,7 @@ When you encounter a new Odoo issue:
 | **By Version** | | |
 | Odoo 19 | 5 | 2026-02-22 |
 | Odoo 18 | 3 | 2026-01-22 |
+| Odoo 18 Payment Providers | 3 | 2026-05-08 |
 | Odoo 17 | - | - |
 | Odoo 16 | - | - |
 | Odoo 15 | - | - |
@@ -163,6 +171,6 @@ For questions about specific lessons or to suggest new topics, open an issue in 
 
 ---
 
-**Last Updated**: 2026-02-26  
+**Last Updated**: 2026-05-08  
 **Maintained by**: Largotek SRL Development Team  
 **License**: CC-BY-4.0 (Knowledge sharing)
