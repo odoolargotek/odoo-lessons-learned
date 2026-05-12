@@ -2,7 +2,7 @@
 
 **Purpose**: Fast solutions for common Odoo issues that don't require deep refactoring  
 **Use Case**: When you need to fix something quickly in development or production  
-**Last Updated**: 2026-02-23
+**Last Updated**: 2026-05-12
 
 ---
 
@@ -18,6 +18,43 @@
 ---
 
 ## 📦 Module Issues
+
+### ⚠️ Campo de modelo no encontrado en vista — archivo Python no importado en `__init__.py`
+
+**Contexto**: `lt_optica_base` — Odoo.sh staging, 2026-05-12  
+**Error**: `ParseError: El campo "is_optical_client" no existe en el modelo "res.partner"`
+
+**Causa raíz**:  
+El archivo `models/res_partner.py` existía con el campo definido correctamente, pero **nunca fue importado** en `models/__init__.py`. Odoo carga los modelos solo a través de los imports del `__init__.py` — si el archivo no está listado, el campo no existe para el ORM aunque el `.py` esté en el disco.
+
+```python
+# models/__init__.py — INCORRECTO (faltaban las últimas dos líneas)
+from . import opt_prescription_stage
+from . import opt_prescription
+from . import opt_work_order
+# res_partner.py y sale_order.py existen en disco pero Odoo no los conoce
+
+# models/__init__.py — CORRECTO
+from . import opt_prescription_stage
+from . import opt_prescription
+from . import opt_work_order
+from . import res_partner   # ← campo is_optical_client vive aquí
+from . import sale_order    # ← también faltaba este
+```
+
+**Fix**:  
+Agregar las líneas faltantes en `models/__init__.py` y hacer `-u` del módulo.
+
+**Cómo detectarlo**:  
+```bash
+# Compara los archivos .py del directorio con los imports del __init__.py
+ls lt_optica_base/models/*.py | grep -v __init__ | xargs -I{} basename {} .py
+# Si aparece algún nombre que NO está en __init__.py → está sin cargar
+```
+
+**Regla de oro**: Cada vez que creas un nuevo `.py` en `models/`, agrégalo al `__init__.py` de inmediato — antes de escribir una sola línea de código en él.
+
+---
 
 ### Module Won't Install - Dependency Error
 
@@ -137,6 +174,81 @@ ANALYZE model_table;
 ---
 
 ## 🎨 View & UI Issues
+
+### ✅ Kanban con etapas configurables para módulos custom (patrón robusto)
+
+**Contexto**: `lt_optica_base` — Módulo de recetas ópticas, 2026-05-12  
+**Necesidad**: Kanban con columnas configurables, sin perder el flujo de negocio controlado por `state`.
+
+**Patrón recomendado — `state` + `stage_id` duales**:
+
+```python
+# models/opt_prescription_stage.py
+class OptPrescriptionStage(models.Model):
+    _name = 'opt.prescription.stage'
+    _description = 'Etapa de receta'
+    _order = 'sequence, id'
+
+    name = fields.Char(required=True)
+    sequence = fields.Integer(default=10)
+    fold = fields.Boolean(default=False)  # Oculta columna vacía en kanban
+    state_code = fields.Selection([
+        ('draft', 'Borrador'), ('confirmed', 'Confirmada'),
+        ('in_lab', 'En Laboratorio'), ('ready', 'Lista para Entrega'),
+        ('delivered', 'Entregada'), ('cancelled', 'Cancelada'),
+    ])
+
+# models/opt_prescription.py
+class OptPrescription(models.Model):
+    _name = 'opt.prescription'
+    _inherit = ['mail.thread']
+
+    state = fields.Selection([...])          # Controla botones y lógica de negocio
+    stage_id = fields.Many2one(              # Controla el kanban
+        'opt.prescription.stage',
+        group_expand='_read_group_stage_ids'
+    )
+
+    @api.model
+    def _read_group_stage_ids(self, stages, domain, order):
+        """Garantiza que todas las columnas aparezcan aunque estén vacías."""
+        return stages.search([], order=order)
+
+    def _sync_stage_from_state(self):
+        """Sincroniza stage_id automáticamente cada vez que state cambia."""
+        state_to_code = {
+            'draft': 'draft', 'confirmed': 'confirmed',
+            'in_lab': 'in_lab', 'ready': 'ready',
+            'delivered': 'delivered', 'cancelled': 'cancelled',
+        }
+        for rec in self:
+            code = state_to_code.get(rec.state)
+            if code:
+                stage = self.env['opt.prescription.stage'].search(
+                    [('state_code', '=', code)], limit=1
+                )
+                if stage:
+                    rec.stage_id = stage
+```
+
+**Etapas precargadas en `data/opt_prescription_stage_data.xml`**:
+
+| seq | name | fold |
+|-----|------|------|
+| 10 | Borrador | No |
+| 20 | Confirmada | No |
+| 30 | En Laboratorio | No |
+| 40 | Lista para Entrega | No |
+| 50 | Entregada | ✅ Sí |
+| 99 | Cancelada | ✅ Sí |
+
+**Por qué este patrón**:
+- `state` → flujo de negocio, botones del formulario, reglas de negocio
+- `stage_id` → kanban visual, configurable por el manager sin tocar código
+- `fold=True` en estados finales → kanban limpio cuando no hay registros activos
+- `_read_group_stage_ids` → todas las columnas siempre visibles
+
+---
 
 ### View Not Refreshing After Changes
 
@@ -611,6 +723,6 @@ def calculate_total(self):
 
 **Remember**: Quick fixes are temporary solutions. Always plan for proper implementation!
 
-**Document Version**: 1.0  
-**Last Updated**: 2026-02-23  
+**Document Version**: 1.1  
+**Last Updated**: 2026-05-12  
 **Maintainer**: Largotek SRL Development Team
