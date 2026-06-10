@@ -22,6 +22,8 @@ This repository serves as a **centralized reference** for:
 #### Odoo 18
 - [**odoo-18-lessons.md**](./odoo-18-lessons.md) - Issues, breaking changes, and solutions for Odoo 18
 - [**odoo-18-payment-provider-lessons.md**](./odoo-18-payment-provider-lessons.md) - Custom payment provider: QWeb context, inline form, rendering_values
+- [**odoo-18-portal-ecommerce.md**](./odoo-18-portal-ecommerce.md) - Portal and eCommerce customization patterns
+- [**odoo-18-stock-cancel-lessons.md**](./odoo-18-stock-cancel-lessons.md) - Stock cancellation and inventory flow issues
 
 #### Odoo 17
 - *Planned*
@@ -29,8 +31,8 @@ This repository serves as a **centralized reference** for:
 #### Odoo 16
 - *Planned*
 
-#### Odoo 15
-- *Planned*
+#### Odoo 15 ✅
+- [**odoo-15-lessons.md**](./odoo-15-lessons.md) - `crm.lead` computed fields, `order_ids` vs `sale_ids`, kanban views, bulk data population
 
 #### Odoo 14 (Legacy)
 - *Planned*
@@ -55,16 +57,16 @@ This repository serves as a **centralized reference** for:
 ## 🚀 Quick Links
 
 **Most Recent Issues:**
-1. [Odoo 18: Payment Provider — KeyError rendering_values](./odoo-18-payment-provider-lessons.md#-error-2-keyerror-rendering_values-en-el-template-qweb) - `rendering_values` no es variable en el template
-2. [Odoo 18: Payment Provider — KeyError provider_sudo](./odoo-18-payment-provider-lessons.md#-error-3-keyerror-provider_sudo-en-el-template-qweb) - Hay que inyectarlo manualmente
-3. [Odoo 18: Payment Provider — Pantalla gris](./odoo-18-payment-provider-lessons.md#-error-1-pantalla-gris-en-el-checkout-overlay-bloqueante) - No devolver binarios en rendering_values
-4. [QWeb Reports: Blank PDF Files](./qweb-reports-lessons.md#-blank-pdf-reports) - Report generates but shows no content
-5. [QWeb Reports: Template Caching](./qweb-reports-lessons.md#-template-caching-issues) - Changes not appearing after update
-6. [Odoo 19: HTTP Route Type Deprecation](./odoo-19-lessons.md#1-http-route-type-deprecation-typejson--typejsonrpc) - `type='json'` → `type='jsonrpc'`
-7. [Odoo 19: View Target Changes](./odoo-19-lessons.md#2-view-target-deprecation-targetinline-no-longer-valid) - `target='inline'` removed
-8. [Odoo 19: Model Description Required](./odoo-19-lessons.md#3-model-_description-attribute-now-required) - All models need `_description`
-9. [Odoo 18: Chatter Widget Migration](./odoo-18-lessons.md#chatter-widget-migration) - Form rendering breaks with legacy chatter syntax
-10. [Odoo 18: Activity Field Naming Conflict](./odoo-18-lessons.md#activity-field-naming-conflict) - `activity_ids` conflicts with mail.activity.mixin
+1. [Odoo 15: `sale_ids` → `order_ids` en `crm.lead`](./odoo-15-lessons.md#sale_ids-no-existe-en-crmlead----usar-order_ids) - AttributeError en computed fields del CRM
+2. [Odoo 15: Campo `related` no recalcula en asignación manual](./odoo-15-lessons.md#issue-1-campo-related-con-storetrue-no-se-recalcula-en-asignación-manual-desde-shell) - Forzar recalculo después de poblar masivo
+3. [Odoo 15: Vistas kanban no actualizan sin `-u`](./odoo-15-lessons.md#issue-2-vista-kanban-no-se-actualiza-hasta-hacer--u-del-módulo) - En Odoo.sh usar Upgrade desde Apps
+4. [Odoo 18: Payment Provider — KeyError rendering_values](./odoo-18-payment-provider-lessons.md#-error-2-keyerror-rendering_values-en-el-template-qweb) - `rendering_values` no es variable en el template
+5. [Odoo 18: Payment Provider — KeyError provider_sudo](./odoo-18-payment-provider-lessons.md#-error-3-keyerror-provider_sudo-en-el-template-qweb) - Hay que inyectarlo manualmente
+6. [Odoo 18: Payment Provider — Pantalla gris](./odoo-18-payment-provider-lessons.md#-error-1-pantalla-gris-en-el-checkout-overlay-bloqueante) - No devolver binarios en rendering_values
+7. [QWeb Reports: Blank PDF Files](./qweb-reports-lessons.md#-blank-pdf-reports) - Report generates but shows no content
+8. [QWeb Reports: Template Caching](./qweb-reports-lessons.md#-template-caching-issues) - Changes not appearing after update
+9. [Odoo 19: HTTP Route Type Deprecation](./odoo-19-lessons.md#1-http-route-type-deprecation-typejson--typejsonrpc) - `type='json'` → `type='jsonrpc'`
+10. [Odoo 19: View Target Changes](./odoo-19-lessons.md#2-view-target-deprecation-targetinline-no-longer-valid) - `target='inline'` removed
 
 **Quick Fixes:**
 - [Module Won't Install](./quick-fixes.md#module-wont-install---dependency-error)
@@ -153,7 +155,7 @@ When you encounter a new Odoo issue:
 | Odoo 18 Payment Providers | 3 | 2026-05-08 |
 | Odoo 17 | - | - |
 | Odoo 16 | - | - |
-| Odoo 15 | - | - |
+| **Odoo 15** | **5** | **2026-06-10** |
 | **By Topic** | | |
 | QWeb Reports | 4 | 2026-02-26 |
 | Quick Fixes | 25+ | 2026-02-23 |
@@ -171,6 +173,6 @@ For questions about specific lessons or to suggest new topics, open an issue in 
 
 ---
 
-**Last Updated**: 2026-05-08  
+**Last Updated**: 2026-06-10  
 **Maintained by**: Largotek SRL Development Team  
 **License**: CC-BY-4.0 (Knowledge sharing)
